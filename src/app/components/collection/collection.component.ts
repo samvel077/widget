@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { Card, Collection } from 'src/app/shered/models/widget';
 import { WidgetService } from 'services/widget.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
    selector: 'app-collection',
@@ -22,7 +23,8 @@ export class CollectionComponent implements OnInit, OnDestroy {
    constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private widgetService: WidgetService
+      private widgetService: WidgetService,
+      @Inject(DOCUMENT) public document: Document
    ) { }
 
    ngOnInit() {
